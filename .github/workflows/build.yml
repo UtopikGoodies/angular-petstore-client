@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Download OpenAPI Conguration File
-        run: curl ${{ SWAGGER_OPENAPI_FILE_URL }} -O
+        run: curl ${{ env.SWAGGER_OPENAPI_FILE_URL }} -O
 
   typescript-angular-client:
     needs: prepare
