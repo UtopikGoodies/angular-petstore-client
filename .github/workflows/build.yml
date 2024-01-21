@@ -7,7 +7,8 @@ on:
   pull_request:
     branches: [ "main" ]
 
-  workflow_dispatch:
+env:
+  SWAGGER_OPENAPI_FILE_URL: https://petstore3.swagger.io/api/v3/openapi.json
 
 jobs:
   prepare:
@@ -15,7 +16,7 @@ jobs:
 
     steps:
       - name: Download OpenAPI Conguration File
-        run: curl https://petstore3.swagger.io/api/v3/openapi.json
+        run: curl ${{ SWAGGER_OPENAPI_FILE_URL }} -O
 
   typescript-angular-client:
     needs: prepare
