@@ -76,8 +76,8 @@ jobs:
         uses: actions/setup-node@v4.0.1
         with:
           node-version: 18
-          registry-url: ${{ steps.package.outputs.registry }}
-          scope: ${{ steps.package.outputs.scope }}
+          registry-url: ${{ steps.package-meta.outputs.registry }}
+          scope: ${{ steps.package-meta.outputs.scope }}
 
       # Add information to the package configuration.
       - name: Configure package
@@ -97,8 +97,8 @@ jobs:
         if: ${{ !(startsWith(github.ref, 'refs/tags/v')) }}
         id: version-id
         env:
-          PACKAGE_NAME: ${{ steps.package.outputs.name }}
-          PACKAGE_VERSION: ${{ steps.package.outputs.version }}
+          PACKAGE_NAME: ${{ steps.package-meta.outputs.name }}
+          PACKAGE_VERSION: ${{ steps.package-meta.outputs.version }}
         uses: actions/github-script@v7
         with:
           script: |
@@ -120,7 +120,7 @@ jobs:
         if: ${{ !(startsWith(github.ref, 'refs/tags/v')) && steps.version-id.outputs.result != '0' }}
         uses: actions/delete-package-versions@v4
         with:
-          package-name: ${{ steps.package.outputs.name }}
+          package-name: ${{ steps.package-meta.outputs.name }}
           package-type: 'npm'
           package-version-ids: ${{ steps.version-id.outputs.result }}
 
@@ -153,7 +153,7 @@ jobs:
           fi
 
         env:
-          NODE_AUTH_TOKEN: ${{ steps.package.outputs.secret }}
+          NODE_AUTH_TOKEN: ${{ steps.package-meta.outputs.secret }}
 
   clean-up:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
