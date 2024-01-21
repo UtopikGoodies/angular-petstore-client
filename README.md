@@ -8,6 +8,7 @@
 This project use the file [openapi.json](https://petstore3.swagger.io/api/v3/openapi.json) from [petstore3.swagger.io](https://petstore3.swagger.io/) to generate client libraries.
 
 ## Typescript Angular Client
-[![npm version](https://badge.fury.io/js/@utopikgoodies%2Fswagger-petstore-client.svg)](https://badge.fury.io/js/@utopikgoodies%2Fswagger-petstore-client)
+![NPM Version](https://img.shields.io/npm/v/%40utopikgoodies%2Fswagger-petstore-client?label=npm%20package)
+
 
 Generate and publish the npm package: [@utopikgoodies/swagger-petstore-client](https://www.npmjs.com/package/@utopikgoodies/swagger-petstore-client)
