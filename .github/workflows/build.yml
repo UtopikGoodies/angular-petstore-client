@@ -30,6 +30,9 @@ jobs:
   typescript-angular-client:
     needs: prepare
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       # Get a copy of the OpenAPI Configuration File in the local directory.
       - name: Download OpenAPI configuration file from artifact
@@ -57,7 +60,7 @@ jobs:
           fi
 
           echo "scope=@$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
-          echo "name=${GITHUB_REPOSITORY#*/}-client" >> $GITHUB_OUTPUT
+          echo "name=${GITHUB_REPOSITORY#*/}" >> $GITHUB_OUTPUT
 
       # Generate a npm package for Angular library based on the OpenAPI Configuration File.
       - name: Generate Angular Client
